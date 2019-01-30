@@ -24,7 +24,7 @@ class SuggestionRowState extends State<SuggestionRow> with TickerProviderStateMi
   initState() {
     super.initState();
     animation.addListener(() {
-      setState(() {}); // Calls render function
+      setState(() {});
     });
   }
 

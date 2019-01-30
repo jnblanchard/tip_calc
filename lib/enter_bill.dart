@@ -6,19 +6,19 @@ class BillCenter extends StatefulWidget {
   Animation<double> animation;
   double bill;
   AnimationStatus animationStatus = AnimationStatus.forward;
-  AnimationController controller;
+  AnimationController animationController;
   TextEditingController textController;
 
-  BillCenter(this.animation, this.bill, this.animationStatus, this.controller, this.textController { Key key }) : super(key: key);
+  BillCenter(this.animation, this.bill, this.animationStatus, this.animationController, this.textController { Key key }) : super(key: key);
 
   @override
-  BillCenterState createState() => BillCenterState(this.animation, this.bill, this.animationStatus, this.controller, this.textController);
+  BillCenterState createState() => BillCenterState(this.animation, this.bill, this.animationStatus, this.animationController, this.textController);
 }
 
 class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
   double bill;
   AnimationStatus animationStatus;
-  AnimationController controller;
+  AnimationController animationController;
   TextEditingController textEditingController;
   Animation<double> animation;
   BillCenterState(this.animation, this.bill, this.animationStatus, this.controller, this.textEditingController);
@@ -26,7 +26,7 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
 
   initState() {
     super.initState();
-    controller.addStatusListener((status) {
+    animationController.addStatusListener((status) {
       animationStatus = status;
     });
   }
@@ -66,10 +66,10 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
                               setState(() { bill = 0; });
                               switch (animationStatus) {
                                 case AnimationStatus.completed:
-                                  controller.reverse(from: 1.0);
+                                  animationController.reverse(from: 1.0);
                                   break;
                                 case AnimationStatus.forward:
-                                  controller.reverse(from: animation.value);
+                                  animationController.reverse(from: animation.value);
                                   break;
                                 default:
                                   break;
@@ -94,14 +94,14 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
                         }
                         switch (animationStatus) {
                           case AnimationStatus.completed:
-                            controller.reverse(from: 1.0);
+                            animationController.reverse(from: 1.0);
                             break;
                           case AnimationStatus.reverse:
                             break;
                           case AnimationStatus.dismissed:
                             break;
                           case AnimationStatus.forward:
-                            controller.reverse(from: animation.value);
+                            animationController.reverse(from: animation.value);
                             break;
                         }
                       } else {
@@ -109,10 +109,10 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
                           case AnimationStatus.completed:
                             break;
                           case AnimationStatus.reverse:
-                            controller.forward(from: animation.value);
+                            animationController.forward(from: animation.value);
                             break;
                           case AnimationStatus.dismissed:
-                            controller.forward(from: 0.0);
+                            animationController.forward(from: 0.0);
                             break;
                           case AnimationStatus.forward:
                             break;

@@ -46,8 +46,8 @@ class TipScreenState extends State<TipScreen> with TickerProviderStateMixin {
 
   initState() {
     super.initState();
-    animationController = new AnimationController(
-        duration: new Duration(milliseconds: 250), vsync: this);
+    animationController = AnimationController(
+        duration: Duration(milliseconds: 250), vsync: this);
 
     animation =
         Tween(begin: 0.0, end: 1.0).animate(animationController);
