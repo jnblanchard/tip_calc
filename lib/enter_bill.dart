@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import "circle_icon.dart";
+import "bottom_information.dart";
 
 
 class BillCenter extends StatefulWidget {
@@ -9,7 +10,7 @@ class BillCenter extends StatefulWidget {
   AnimationController animationController;
   TextEditingController textController;
 
-  BillCenter(this.animation, this.bill, this.animationStatus, this.animationController, this.textController { Key key }) : super(key: key);
+  BillCenter(this.animation, this.bill, this.animationStatus, this.animationController, this.textController, { Key key }) : super(key: key);
 
   @override
   BillCenterState createState() => BillCenterState(this.animation, this.bill, this.animationStatus, this.animationController, this.textController);
@@ -21,7 +22,7 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
   AnimationController animationController;
   TextEditingController textEditingController;
   Animation<double> animation;
-  BillCenterState(this.animation, this.bill, this.animationStatus, this.controller, this.textEditingController);
+  BillCenterState(this.animation, this.bill, this.animationStatus, this.animationController, this.textEditingController);
 
 
   initState() {
@@ -90,11 +91,13 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
                       if (billValue == null) {
                         if (value.isNotEmpty) {
                           textEditingController.clear();
+                          Scaffold.of(context).hideCurrentSnackBar();
                           billValue = 0;
                         }
                         switch (animationStatus) {
                           case AnimationStatus.completed:
                             animationController.reverse(from: 1.0);
+                            Scaffold.of(context).hideCurrentSnackBar();
                             break;
                           case AnimationStatus.reverse:
                             break;
@@ -102,6 +105,7 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
                             break;
                           case AnimationStatus.forward:
                             animationController.reverse(from: animation.value);
+                            Scaffold.of(context).hideCurrentSnackBar();
                             break;
                         }
                       } else {
@@ -110,9 +114,11 @@ class BillCenterState extends State<BillCenter> with TickerProviderStateMixin {
                             break;
                           case AnimationStatus.reverse:
                             animationController.forward(from: animation.value);
+                            Scaffold.of(context).showSnackBar(snackBar());
                             break;
                           case AnimationStatus.dismissed:
                             animationController.forward(from: 0.0);
+                            Scaffold.of(context).showSnackBar(snackBar());
                             break;
                           case AnimationStatus.forward:
                             break;

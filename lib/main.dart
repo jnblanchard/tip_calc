@@ -4,6 +4,7 @@ import 'enter_bill.dart';
 
 void main() => runApp(TipCalculator());
 
+
 class TipCalculator extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -36,6 +37,8 @@ class TipScreen extends StatefulWidget {
 
 class TipScreenState extends State<TipScreen> with TickerProviderStateMixin {
 
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
   Animation<double> animation;
   AnimationController animationController;
   AnimationStatus animationStatus = AnimationStatus.dismissed;
@@ -62,6 +65,7 @@ class TipScreenState extends State<TipScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldKey,
         appBar: AppBar(
           title: Text( "Tip Calculator"),
         ),
