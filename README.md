@@ -2,7 +2,7 @@
 
 Creating a cross-platform app is easy!
 ```dart
-void main() => runApp(TipCalculator());
+  void main() => runApp(TipCalculator());
 ```
 
 Declare some animation to make it look cool.
@@ -35,9 +35,8 @@ Create a text entry space for tip amounts.
             SuggestionRow(animation, false),
             SuggestionRow(animation, true),
             BillCenter(animation, bill, animationStatus, animationController, textController)
-          ], ), )
-    );
-  }
+          ], ), ));
+   }
 ```
 Animate suggestions into view using the animation!
 ```dart
