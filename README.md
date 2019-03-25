@@ -7,7 +7,7 @@ void main() => runApp(TipCalculator());
 
 Declare some animation to make it look cool.
 ```dart
-initState() {
+  @override void initState() {
     super.initState();
     animationController = AnimationController(duration: Duration(milliseconds: 250), vsync: this);
     animation = Tween(begin: 0.0, end: 1.0).animate(animationController);
@@ -21,7 +21,7 @@ initState() {
 
 Create a text entry space for tip amounts.
 ```dart
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
